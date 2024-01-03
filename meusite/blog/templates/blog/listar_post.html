@@ -8,7 +8,24 @@
         <div>
             <h1><a href="/">BLOG</a></h1>
         </div>
-        <div>
+        <!-- <div>
+            <pre>
+            {{ posts }}
+            </br>
+            {% for post in posts %}
+                </br>
+                {{post}}
+            {% endfor %}
+            </pre>
+        </div> -->
+        {% for post in posts %}
+            <div>
+                <h3><a href="">Título: {{ post.titulo }}</a></h3>
+                <p>Publicado: {{ post.data_publicacao }}</p>
+                <em>{{ post.texto }}</em>
+            </div>
+        {% endfor %}
+        <!-- <div>
             <h1>Primeiramente</h1>
             <h2><a href="">Meu primeiro post</a></h2>
             <p>publicado: 01.01.2024, 9:58</p>
@@ -19,6 +36,6 @@
             <h2><a href="">Meu segundo post</a></h2>
             <p>publicado: 01.01.2024, 10:01</p>
             <em>Aliquam imperdiet, metus ac ultricies pellentesque, mauris mauris aliquam nibh, quis tincidunt odio magna sed massa. Quisque sodales quam non nulla tempor, at sagittis augue dictum. Integer iaculis sem eu finibus venenatis. Etiam ornare mattis sagittis. Morbi pellentesque nec erat a rutrum. Praesent vulputate mattis nisi ac viverra. Nunc condimentum sollicitudin quam, vel rhoncus ante aliquet eget. Nulla eget facilisis quam. Phasellus et ex leo. Curabitur rutrum quam ante, vitae fermentum orci posuere eu. Fusce rhoncus nisl ac tincidunt varius. Nulla blandit nec tellus vel porta. Integer tempor metus augue, quis vulputate diam luctus nec. Aenean euismod diam a lorem faucibus gravida. Pellentesque laoreet dui vel dolor tempor, eget convallis ipsum eleifend. Maecenas ac sagittis orci. </em>
-        </div>
+        </div> -->
     </body>
 </html>
