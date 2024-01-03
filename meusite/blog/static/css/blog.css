@@ -53,3 +53,9 @@ body {
 .post h3 a, .post h3 a:visited {
     color: #000000;
 }
+
+.plus{
+    color: #fff;
+    display: block;
+    float: right;
+}

@@ -1,6 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
+from django.shortcuts import redirect
+from .forms import PostForm
 from .models import Post
+
 
 # Create your views here.
 
@@ -11,3 +14,30 @@ def listar_post(request):
 def detalhe_post(request,pk):
     post =  get_object_or_404(Post, pk=pk)
     return render(request, 'blog/detalhe_post.html',{'post':post})
+
+def novo_post(request):
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False) 
+            post.autor = request.user
+            post.data_publicacao = timezone.now()
+            post.save()
+            return redirect('detalhe_post', pk=post.pk)
+    else:
+        form = PostForm()
+    return render(request, 'blog/edicao_post.html', {'form':form})
+
+def edicao_post(request,pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == "POST":
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.autor = request.user
+            post.data_publicacao = timezone.now()
+            post.save()
+            return redirect('detalhe_post', pk=post.pk)
+    else:
+        form = PostForm(instance=post)
+    return render(request, 'blog/edicao_post.html', {'form':form})
